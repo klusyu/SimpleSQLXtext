@@ -1,0 +1,29 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: org.xtext.example.simple_sql
+Bundle-ManifestVersion: 2
+Bundle-Name: org.xtext.example.simple_sql
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: org.xtext.example.simple_sql; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
+ org.eclipse.equinox.common;bundle-version="3.16.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.xtext.xbase.lib;bundle-version="2.14.0",
+ org.eclipse.xtext.util,
+ org.eclipse.emf.common,
+ org.antlr.runtime;bundle-version="[3.2.0,3.2.1)"
+Bundle-RequiredExecutionEnvironment: JavaSE-17
+Export-Package: org.xtext.example.simple_sql.parser.antlr.internal,
+ org.xtext.example.simple_sql.serializer,
+ org.xtext.example.simple_sql.parser.antlr,
+ org.xtext.example.simple_sql.sQL,
+ org.xtext.example.simple_sql.sQL.impl,
+ org.xtext.example.simple_sql.scoping,
+ org.xtext.example.simple_sql.generator,
+ org.xtext.example.simple_sql.services,
+ org.xtext.example.simple_sql.validation,
+ org.xtext.example.simple_sql,
+ org.xtext.example.simple_sql.sQL.util
+Import-Package: org.apache.log4j

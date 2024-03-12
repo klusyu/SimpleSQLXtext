@@ -1,0 +1,10 @@
+CREATE TABLE "tbl_patient" (
+	patientid INT NOT NULL PRIMARY KEY,
+	name VARCHAR(40) NOT NULL,
+	type BOOLEAN NOT NULL,
+	stage TINYINT NOT NULL
+) 
+
+SELECT name
+FROM "tbl_patient"
+WHERE stage = 4 AND type = false

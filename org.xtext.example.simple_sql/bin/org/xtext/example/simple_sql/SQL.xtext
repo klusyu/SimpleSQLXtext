@@ -1,0 +1,54 @@
+grammar org.xtext.example.simple_sql.SQL with org.eclipse.xtext.common.Terminals
+
+generate sQL "http://www.xtext.org/example/simple_sql/SQL"
+
+Model:
+    statements+=Statement*;
+
+Statement:
+    CreateTableStatement | SelectStatement;
+
+CreateTableStatement:
+    'CREATE' 'TABLE' tableName=STRING '(' columns+=ColumnDefinition* ')';
+
+ColumnDefinition:
+    columnName=ID columnType=ColumnType (constraints+=Constraint)* ','?;
+
+ColumnType:
+    {ColumnType} 'INT' | 'VARCHAR' '(' length=INT ')' | {ColumnType} 'BOOLEAN' | {ColumnType} 'TINYINT';
+
+Constraint:
+    'NOT' 'NULL' | 'PRIMARY' 'KEY';
+
+SelectStatement:
+    'SELECT' selectedColumns=SelectedColumns 'FROM' tableName=STRING (whereClause=WhereClause)?;
+
+SelectedColumns:
+    columns+=ID (',' columns+=ID)*;
+
+WhereClause:
+    'WHERE' expression=Expression;
+
+Expression:
+    AndExpression ({OrExpression.left=current} 'OR' right=AndExpression)*;
+
+AndExpression:
+    Comparison ({AndExpression.left=current} 'AND' right=Comparison)*;
+
+Comparison:
+    column=ID operator=Operator value=Value;
+
+Operator:
+    '=' | '<>' | '<' | '<=' | '>' | '>=';
+
+Value:
+    BooleanValue | NumberValue | StringValue;
+
+BooleanValue:
+    value=('true' | 'false');
+
+NumberValue:
+    value=INT;
+
+StringValue:
+    value=STRING;
